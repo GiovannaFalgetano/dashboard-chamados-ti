@@ -23,7 +23,7 @@ sla_horas = {
 }
 
 min_horas = {"Alta": 2, "Média": 8, "Baixa": 12}
-max_horas = {"Alta": 6, "Média": 48, "Baixa": 96}
+max_horas = {"Alta": 6, "Média": 80, "Baixa": 140}
 
 np.random.seed(42)
 n = 3000
@@ -70,3 +70,4 @@ df = pd.DataFrame({
 
 print(df.head())
 print(df["aberto_em"].min(), df["aberto_em"].max())
+print(df["sla_cumprido"].mean())
