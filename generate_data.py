@@ -53,6 +53,8 @@ maximos = pd.Series(prioridade_col).map(max_horas).to_numpy()
 
 horas_resolucao_col = np.random.randint(minimos, maximos)
 
+sla_cumprido_col = horas_resolucao_col <= prazo_col
+
 df = pd.DataFrame({
     "tipo": tipo_col,
     "categoria": categoria_col,
@@ -63,6 +65,7 @@ df = pd.DataFrame({
     "aberto_em": abertura_col,
     "prazo_sla": prazo_col,
     "horas_resolucao": horas_resolucao_col,
+    "sla_cumprido": sla_cumprido_col,
 })
 
 print(df.head())
