@@ -37,6 +37,12 @@ departamento_col = np.random.choice(departamentos, size=n)
 
 grupo_col = np.random.choice(grupos, size=n)
 
+inicio = pd.Timestamp("2026-05-01")
+dias = np.random.randint(0, 180, size=n)
+horas = np.random.randint(8, 18, size=n)
+
+abertura_col = inicio + pd.to_timedelta(dias, unit="D") + pd.to_timedelta(horas, unit="h")
+
 df = pd.DataFrame({
     "tipo": tipo_col,
     "categoria": categoria_col,
@@ -44,7 +50,8 @@ df = pd.DataFrame({
     "status": status_col,
     "departamento": departamento_col,
     "grupo": grupo_col,
+    "aberto_em": abertura_col,
 })
 
 print(df.head())
-print(df.shape)
+print(df["aberto_em"].min(), df["aberto_em"].max())
