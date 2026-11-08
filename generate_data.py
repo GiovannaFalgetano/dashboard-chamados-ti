@@ -22,6 +22,9 @@ sla_horas = {
     "Alta": 24,
 }
 
+min_horas = {"Alta": 2, "Média": 8, "Baixa": 12}
+max_horas = {"Alta": 6, "Média": 48, "Baixa": 96}
+
 np.random.seed(42)
 n = 3000
 
@@ -45,6 +48,11 @@ abertura_col = inicio + pd.to_timedelta(dias, unit="D") + pd.to_timedelta(horas,
 
 prazo_col = pd.Series(prioridade_col).map(sla_horas)
 
+minimos = pd.Series(prioridade_col).map(min_horas).to_numpy()
+maximos = pd.Series(prioridade_col).map(max_horas).to_numpy()
+
+horas_resolucao_col = np.random.randint(minimos, maximos)
+
 df = pd.DataFrame({
     "tipo": tipo_col,
     "categoria": categoria_col,
@@ -54,6 +62,7 @@ df = pd.DataFrame({
     "grupo": grupo_col,
     "aberto_em": abertura_col,
     "prazo_sla": prazo_col,
+    "horas_resolucao": horas_resolucao_col,
 })
 
 print(df.head())
