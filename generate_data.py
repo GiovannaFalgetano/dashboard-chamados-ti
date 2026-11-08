@@ -23,21 +23,28 @@ sla_horas = {
 }
 
 np.random.seed(42)
+n = 3000
 
-tipo_col = np.random.choice(tipos, size=10)
-print(tipo_col)
+tipo_col = np.random.choice(tipos, size=n)
 
-categoria_col = np.random.choice(categorias, size=10)
-print(categoria_col)
+categoria_col = np.random.choice(categorias, size=n)
 
-prioridade_col = np.random.choice(prioridades, size=10)
-print(prioridade_col)
+prioridade_col = np.random.choice(prioridades, size=n)
 
-status_col = np.random.choice(status, size=10)
-print(status_col)
+status_col = np.random.choice(status, size=n)
 
-departamento_col = np.random.choice(departamentos, size=10)
-print(departamento_col)
+departamento_col = np.random.choice(departamentos, size=n)
 
-grupo_col = np.random.choice(grupos, size=10)
-print(grupo_col)
+grupo_col = np.random.choice(grupos, size=n)
+
+df = pd.DataFrame({
+    "tipo": tipo_col,
+    "categoria": categoria_col,
+    "prioridade": prioridade_col,
+    "status": status_col,
+    "departamento": departamento_col,
+    "grupo": grupo_col,
+})
+
+print(df.head())
+print(df.shape)
