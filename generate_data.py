@@ -50,10 +50,12 @@ prazo_col = pd.Series(prioridade_col).map(sla_horas)
 
 minimos = pd.Series(prioridade_col).map(min_horas).to_numpy()
 maximos = pd.Series(prioridade_col).map(max_horas).to_numpy()
-
 horas_resolucao_col = np.random.randint(minimos, maximos)
 
-sla_cumprido_col = horas_resolucao_col <= prazo_col
+sla_cumprido_col = pd.Series(horas_resolucao_col <= prazo_col, dtype="boolean")
+sla_cumprido_col = sla_cumprido_col.where(status_col == "Resolvido")
+
+horas_resolucao_col = np.where(status_col == "Resolvido", horas_resolucao_col, np.nan)
 
 df = pd.DataFrame({
     "tipo": tipo_col,
