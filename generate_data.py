@@ -43,6 +43,8 @@ horas = np.random.randint(8, 18, size=n)
 
 abertura_col = inicio + pd.to_timedelta(dias, unit="D") + pd.to_timedelta(horas, unit="h")
 
+prazo_col = pd.Series(prioridade_col).map(sla_horas)
+
 df = pd.DataFrame({
     "tipo": tipo_col,
     "categoria": categoria_col,
@@ -51,6 +53,7 @@ df = pd.DataFrame({
     "departamento": departamento_col,
     "grupo": grupo_col,
     "aberto_em": abertura_col,
+    "prazo_sla": prazo_col,
 })
 
 print(df.head())
