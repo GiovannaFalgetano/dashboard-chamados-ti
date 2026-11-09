@@ -73,3 +73,4 @@ df = pd.DataFrame({
 print(df.head())
 print(df["aberto_em"].min(), df["aberto_em"].max())
 print(df["sla_cumprido"].mean())
+df.to_csv("chamados_ficticios.csv", index=False)
